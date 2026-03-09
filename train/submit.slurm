@@ -19,6 +19,7 @@ source /etc/profile
 set -e
 
 module load cuda/12.2
+module load python/3.11.11
 
 nvidia-smi -L
 
