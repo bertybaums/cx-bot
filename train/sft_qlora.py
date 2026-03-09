@@ -287,13 +287,13 @@ def main():
         pad_token=tokenizer.eos_token,
         optim="paged_adamw_8bit",
         report_to=None,
-        max_seq_length=args.max_seq_len,
+        max_length=args.max_seq_len,
     )
 
     # 5) Train
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_args,
         train_dataset=ds["train"],
         eval_dataset=ds["validation"],
