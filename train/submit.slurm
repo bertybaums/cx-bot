@@ -45,4 +45,3 @@ python -u train/sft_qlora.py \
     --logging_steps 10 \
     --save_steps 200 \
     --eval_steps 200 \
-    --packing
