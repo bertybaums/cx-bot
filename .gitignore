@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+*.pyc
+
+# Working data (intermediate artifacts; release data is in data/defcx/, data/abdcx/, data/training/)
+data/sft/
