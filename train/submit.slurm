@@ -7,6 +7,7 @@
 
 #SBATCH -p gpu-8
 #SBATCH --gres=gpu:1
+#SBATCH --exclude=n113
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
 #SBATCH --time=4:00:00
