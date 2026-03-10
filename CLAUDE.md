@@ -20,7 +20,11 @@ cx-bot/
 │   ├── training/          ← Merged train/val splits (EOT-separated text)
 │   └── README.md          ← Schema documentation
 ├── examples/              ← Browsable passages by domain (Markdown)
-├── scripts/data/sft/      ← Generation, validation, formatting scripts
+├── scripts/
+│   ├── data/sft/          ← Generation, validation, formatting scripts
+│   ├── bias_remediation.py      ← Automated bias fixes
+│   ├── verify_remediation.py    ← Post-remediation checks
+│   └── add_lgbtq_representation.py
 ├── train/
 │   ├── sft_qlora.py       ← QLoRA SFT training script (Unsloth + TRL)
 │   └── submit.slurm       ← SLURM job for HPC training
@@ -125,6 +129,30 @@ SFT achieved excellent structural quality but inconsistent logical coherence. Th
 - `score.py` — Tier 1 + Tier 2 + TF-IDF novelty scoring
 - `judge.py` — Tier 3 LLM-as-judge (export or API mode)
 - `submit_generate.slurm` — SLURM submission for generation
+
+## Bias Remediation
+
+The dataset underwent systematic bias remediation (scripts in `scripts/`):
+
+### Automated (all 4,474 entries)
+- **Formal fields neutralised:** All definitions, conditions, and missing_condition fields use gender-neutral they/their/them (was ~72% male pronouns)
+- **Pronoun rebalancing:** 40% of male-only entries swapped to female in narrative fields; gender ratio now 55/45 male/female (was 72/28)
+- **Generic language:** "a man who" → "a person who" in non-swapped entries
+- **Disability language:** "suffering from" → "living with", "suffers from" → "has", "afflicted with" → "who has", "crippled" → "disabled"
+
+### Targeted edits
+- **Terra nullius:** 2 settler/property passages revised to acknowledge indigenous prior inhabitants
+- **LGBTQ+ inclusion:** 8 entries rewritten with same-sex couples (was zero representation)
+- **Inca de-duplication:** Reduced from 14+ identical Inca-as-counterexample entries to 4; replaced with Great Zimbabwe, Aboriginal Australian, Mali, Polynesian, Haudenosaunee, Norse, Benin, Cahokia, Chaco Canyon, Tu'i Tonga, Kongo, Kerma
+- **Non-Western aesthetic starting points:** 5 entries restructured so definitions derive from wabi-sabi, rasa theory, shan-shui, Yoruba iwa, Islamic geometric aesthetics (Western art as counterexample)
+- **Female philosopher references:** 10 entries now cite Stebbing, Anscombe, Foot, Murdoch, Emmet, MacDonald, Warnock
+- **Specific fixes:** Gendered shame scenario, attractiveness-cancels-racism scenario, class-coded vocabulary ("untutored philistine")
+
+### Remediation scripts
+- `scripts/bias_remediation.py` — Automated pronoun/disability/generic-language fixes
+- `scripts/verify_remediation.py` — Post-remediation verification checks
+- `scripts/add_lgbtq_representation.py` — LGBTQ+ relationship edits
+- `scripts/data/debias_edits.py` — Inca/non-Western/philosopher edits
 
 ## Register
 
