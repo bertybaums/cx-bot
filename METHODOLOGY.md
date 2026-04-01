@@ -76,7 +76,7 @@ Each counterexample must satisfy several criteria:
 4. **Insight:** The missing condition (if identified) genuinely explains the gap
 
 ### Diversity
-- Examples vary in attack type: some target necessity (a condition isn't needed), others sufficiency (conditions aren't enough), others both
+- **Attack direction:** Automated heuristic classification of all 4,474 entries found that 50.4% demonstrate the definition is too weak (all conditions hold, concept fails), 28.4% too strong (concept applies, condition(s) not met), 15.9% both, and 5.3% ambiguous. See [COUNTEREXAMPLE_DIRECTION.md](COUNTEREXAMPLE_DIRECTION.md) for the full analysis.
 - Within each subdomain, different concepts and different definitions are examined
 - Counterexample structures vary (thought experiments, real-world scenarios, edge cases, limit cases)
 

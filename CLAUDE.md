@@ -22,6 +22,7 @@ cx-bot/
 ├── examples/              ← Browsable passages by domain (Markdown)
 ├── scripts/
 │   ├── data/sft/          ← Generation, validation, formatting scripts
+│   ├── classify_cx_direction.py ← Too-weak vs too-strong analysis
 │   ├── bias_remediation.py      ← Automated bias fixes
 │   ├── verify_remediation.py    ← Post-remediation checks
 │   └── add_lgbtq_representation.py
@@ -42,7 +43,7 @@ cx-bot/
 
 **DefCx** (Definition + Counterexample):
 - Fields: `id`, `domain`, `subdomain`, `definition`, `conditions`, `counterexample`, `missing_condition`, `passage`
-- Definition stated as necessary and sufficient conditions; scenario constructed where all conditions hold but concept fails
+- Definition stated as necessary and sufficient conditions; scenario reveals definition is too weak (conditions hold, concept fails), too strong (concept applies, conditions not met), or both
 
 **AbdCx** (Abductive Counterexample):
 - Fields: all DefCx fields plus `background_cases`, `abductive_insight`
@@ -153,6 +154,21 @@ The dataset underwent systematic bias remediation (scripts in `scripts/`):
 - `scripts/verify_remediation.py` — Post-remediation verification checks
 - `scripts/add_lgbtq_representation.py` — LGBTQ+ relationship edits
 - `scripts/data/debias_edits.py` — Inca/non-Western/philosopher edits
+
+## Counterexample Direction Analysis
+
+Automated heuristic classification of all 4,474 entries by `scripts/classify_cx_direction.py`:
+
+| Direction | Count | % |
+|---|---:|---:|
+| Too weak (conditions met, concept fails) | 2,253 | 50.4% |
+| Too strong (concept applies, condition not met) | 1,271 | 28.4% |
+| Both | 713 | 15.9% |
+| Ambiguous | 237 | 5.3% |
+
+Per-entry results in `data/classification_results.json`. Full report in `COUNTEREXAMPLE_DIRECTION.md`.
+
+Domain variation: epistemology is 74% too-weak (Gettier tradition); logic and social philosophy lean too-strong (~41-47%); philosophy of language has the highest "both" rate (25%).
 
 ## Register
 

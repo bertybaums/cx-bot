@@ -2,7 +2,7 @@
 
 A dataset of **4,474 philosophical counterexamples** across **16 domains**, designed for training language models to recognise and generate counterexamples to definitions stated as necessary and sufficient conditions.
 
-Each example presents a proposed definition, constructs a concrete scenario revealing its structural insufficiency, and (where applicable) identifies the missing condition that would repair the analysis. All passages are written in the style of early-to-mid twentieth-century analytic philosophy.
+Each example presents a proposed definition, constructs a concrete scenario revealing its structural insufficiency, and (where applicable) identifies the missing condition that would repair the analysis. About half the counterexamples show the definition is **too weak** (conditions met, concept fails); about a quarter show it is **too strong** (concept applies, condition not met); the remainder show both or are ambiguous. See [COUNTEREXAMPLE_DIRECTION.md](COUNTEREXAMPLE_DIRECTION.md) for the full analysis. All passages are written in the style of early-to-mid twentieth-century analytic philosophy.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ Each example presents a proposed definition, constructs a concrete scenario reve
 
 ### Two Formats
 
-**DefCx** (Definition + Counterexample): A definition is stated as necessary and sufficient conditions; a scenario is constructed where all conditions hold but the concept fails to apply.
+**DefCx** (Definition + Counterexample): A definition is stated as necessary and sufficient conditions; a scenario is constructed revealing the definition is too weak (conditions hold, concept fails), too strong (concept applies, conditions not met), or both.
 
 **AbdCx** (Abductive Counterexample): Background cases motivate a definition; the counterexample exploits a feature the cases shared but the definition missed. Includes an explicit abductive insight.
 
@@ -51,9 +51,10 @@ From the epistemology/knowledge subdomain (DefCx):
 
 ```
 cx-bot/
-├── README.md              ← You are here
-├── METHODOLOGY.md         ← How examples were created and validated
-├── LICENSE                ← CC-BY-4.0
+├── README.md                      ← You are here
+├── METHODOLOGY.md                 ← How examples were created and validated
+├── COUNTEREXAMPLE_DIRECTION.md    ← Too-weak vs too-strong analysis
+├── LICENSE                        ← CC-BY-4.0
 ├── examples/              ← Browsable passages by domain (Markdown)
 ├── data/
 │   ├── defcx/             ← DefCx JSONL files (one per domain)
@@ -91,7 +92,7 @@ See [`data/README.md`](data/README.md) for full schema documentation.
 
 ## Methodology
 
-All examples were generated using Claude (Anthropic) and validated through a structural pipeline checking field completeness, condition coverage, passage length, and near-duplicate detection via TF-IDF cosine similarity. See [METHODOLOGY.md](METHODOLOGY.md) for full details.
+All examples were generated using Claude (Anthropic) and validated through a structural pipeline checking field completeness, condition coverage, passage length, and near-duplicate detection via TF-IDF cosine similarity. See [METHODOLOGY.md](METHODOLOGY.md) for full details and [COUNTEREXAMPLE_DIRECTION.md](COUNTEREXAMPLE_DIRECTION.md) for the too-weak vs too-strong breakdown.
 
 ## License
 

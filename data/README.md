@@ -50,3 +50,19 @@ Files in `training/` contain EOT-separated passages:
 ```
 
 Generated with a 95/5 train/val split, shuffled with seed 42.
+
+## Classification Results
+
+`classification_results.json` contains per-entry direction classifications produced by `scripts/classify_cx_direction.py`. Each entry has:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Entry identifier (matches source JSONL) |
+| `type` | string | `"defcx"` or `"abdcx"` |
+| `domain` | string | Philosophical domain |
+| `subdomain` | string | Specific subdomain |
+| `classification` | string | `"TOO_WEAK"`, `"TOO_STRONG"`, `"BOTH"`, or `"AMBIGUOUS"` |
+| `weak_score` | int | Number of too-weak heuristic patterns matched |
+| `strong_score` | int | Number of too-strong heuristic patterns matched |
+
+See [COUNTEREXAMPLE_DIRECTION.md](../COUNTEREXAMPLE_DIRECTION.md) for methodology and interpretation.
