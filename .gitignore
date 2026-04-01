@@ -10,3 +10,9 @@ outputs/
 
 # Eval results (generated, can be reproduced)
 eval/results/
+
+# Environment and editor files
+.env
+.env.*
+.DS_Store
+.claude/
